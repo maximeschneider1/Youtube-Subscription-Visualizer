@@ -1,45 +1,33 @@
 <template>
-    <div id="customNav">
-        <v-toolbar >
-            <v-toolbar-title>Youtube SubSearch</v-toolbar-title>
-
-
+    <nav>
+        <v-toolbar app flat>
             <v-spacer></v-spacer>
-<!--            <v-btn icon>-->
-<!--            <v-icon>mdi-magnify</v-icon>-->
-<!--        </v-btn>-->
-<!--            <v-btn icon>-->
-<!--                <v-icon>mdi-heart</v-icon>-->
-<!--            </v-btn>-->
-
-<!--            <v-btn icon>-->
-<!--                <v-icon>mdi-dots-vertical</v-icon>-->
-<!--            </v-btn>-->
-            <oauth></oauth>
+            <v-subheader>V1</v-subheader>
         </v-toolbar>
+            <v-navigation-drawer app disable-resize-watcher>
+                <v-list>
+                    <v-subheader>Subheader</v-subheader>
 
-        <v-card class="m-auto" max-width="300"  tile>
-            <v-list rounded>
-<!--                <v-subheader>Welcome to YSS</v-subheader>-->
-
-                <v-list-item-group v-model="item" color="primary">
-
-                    <v-list-item v-for="(item, i) in items" :key="i" :to="item.url">
-
+                    <v-list-item
+                            v-for="(item, i) in items" :key="i" :to="item.url"
+                    >
                         <v-list-item-icon>
-                            <v-icon v-text="item.icon"></v-icon>
+                            <v-icon>{{ item.icon }}</v-icon>
                         </v-list-item-icon>
 
                         <v-list-item-content>
-                            <v-list-item-title v-text="item.text"></v-list-item-title>
+                            <v-list-item-title>{{ item.text }}</v-list-item-title>
                         </v-list-item-content>
-
                     </v-list-item>
+                </v-list>
 
-                </v-list-item-group>
-            </v-list>
-        </v-card>
-    </div>
+                <template v-slot:append>
+                    <div class="pa-2">
+                        <oauth></oauth>
+                    </div>
+                </template>
+            </v-navigation-drawer>
+    </nav>
 </template>
 
 
@@ -58,9 +46,11 @@
             item: 1,
             items: [
                 { text: 'Home', icon: 'mdi-flag', url: '/'},
-                { text: 'Subscription', icon: 'mdi-account' , url: '/about'},
+                { text: 'Subscription', icon: 'mdi-account' , url: '/subscriptions'},
                 { text: 'Random', icon: 'mdi-clock' , url: '/random'},
             ],
+            drawer: true
+
         }),
     }
 
@@ -77,5 +67,9 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+    /*#sidebar {*/
+    /*    !*position: absolute;*!*/
+    /*    height: 100%;*/
+    /*}*/
 
 </style>

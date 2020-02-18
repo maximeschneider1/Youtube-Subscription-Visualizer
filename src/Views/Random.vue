@@ -1,5 +1,5 @@
 <template>
-  <div class="random">
+  <v-content>
     <h1>This is an random page</h1>
-  </div>
+  </v-content>
 </template>

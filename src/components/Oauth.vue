@@ -1,23 +1,6 @@
 <template>
     <div>
-        <div class="my-2">
-            <v-btn :href="posts">Connect</v-btn>
-        </div>
-
-
-        <!--        <button v-text="posts"></button>-->
-        <!--        <a :href="posts">Connect</a>-->
-        <!--        <ul v-if="posts && posts.length ">-->
-        <!--            <li v-for="post of posts" v-bind:key="post">-->
-        <!--                <p><strong>{{post}}</strong></p>-->
-        <!--            </li>-->
-        <!--        </ul>-->
-
-        <ul v-if="errors && errors.length">
-            <li v-for="error of errors" v-bind:key="error">
-                {{error.message}}
-            </li>
-        </ul>
+            <v-btn block :href="posts">Connect</v-btn>
     </div>
 </template>
 
