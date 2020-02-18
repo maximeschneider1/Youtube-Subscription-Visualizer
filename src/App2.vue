@@ -1,6 +1,6 @@
 <template>
   <v-app>
-
+    <h1>Salut</h1>
     <navigation></navigation>
     <oauth></oauth>
   </v-app>
