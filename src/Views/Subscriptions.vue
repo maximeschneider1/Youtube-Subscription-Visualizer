@@ -1,10 +1,10 @@
 <template>
-  <v-content>
-    <v-container fluid grid-list-xl>
-      <h1>List of all your subs</h1>
+  <v-content v-if = "isUserLogged=='true'">
+    <v-container fluid grid-list-xl dark>
+      <title>List of all your subs </title>
       <v-layout wrap justify-space-around>
-        <v-flex v-for="result in results" :key="result">
-          <v-card class="mx-auto" max-width="400" v-bind:href="result.URL" target="_blank" >
+        <v-flex v-for="(result, idx) in results" :key="idx">
+          <v-card class="mx-auto deep-purple accent-4" dark max-width="400" v-bind:href="result.URL" target="_blank" >
             <v-img
                     class="white--text align-end"
                     height="200px"
@@ -15,75 +15,113 @@
           </v-card>
         </v-flex>
       </v-layout>
+      <v-layout row wrap>
+        <v-row
+                align="center"
+                justify="space-around"
+        >
+          <v-btn @click.native="prevSubs()" rounded color="primary" dark>Previous</v-btn>
+          <v-btn @click.native="nextSubs()" rounded color="primary" dark>Next</v-btn>
+        </v-row>
+      </v-layout>
     </v-container>
   </v-content>
-    <!--  </v-list-item>-->
-
-<!--</v-list-item-group>-->
-<!--    <v-card-->
-<!--            class="mx-auto"-->
-<!--            max-width="400"-->
-<!--    >-->
-<!--      <v-img-->
-<!--              class="white&#45;&#45;text align-end"-->
-<!--              height="200px"-->
-<!--              src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"-->
-<!--      >-->
-<!--        <v-card-title>Top 10 Australian beaches</v-card-title>-->
-<!--      </v-img>-->
-
-<!--      <v-card-subtitle class="pb-0">Number 10</v-card-subtitle>-->
-
-<!--      <v-card-text class="text&#45;&#45;primary">-->
-<!--        <div>Whitehaven Beach</div>-->
-
-<!--        <div>Whitsunday Island, Whitsunday Islands</div>-->
-<!--      </v-card-text>-->
-
-<!--      <v-card-actions>-->
-<!--        <v-btn-->
-<!--                color="orange"-->
-<!--                text-->
-<!--        >-->
-<!--          Share-->
-<!--        </v-btn>-->
-
-<!--        <v-btn-->
-<!--                color="orange"-->
-<!--                text-->
-<!--        >-->
-<!--          Explore-->
-<!--        </v-btn>-->
-<!--      </v-card-actions>-->
-<!--    </v-card>-->
-
-
-
-
-
+  <div v-else>
+    <Default/>
+  </div>
 </template>
 
 <script>
   import axios from 'axios';
+  import Default from "../components/Default";
+
+  function getCookieValue(a) {
+    var b = document.cookie.match('(^|[^;]+)\\s*' + a + '\\s*=\\s*([^;]+)');
+    return b ? b.pop() : '';
+  }
+
   export default {
-    name: 'app',
+    name: 'myNav',
+    components: {Default},
     data() {
+// counties: []
 
       return {
         results: [
 
-        ]
+        ],
+
+        pagination: {
+          page: 1,
+          total: '',
+          perPage: 5,
+          visible: 5
+        },
+        nextToken : '',
+        prevToken : '',
+        isUserLogged: this.$store.state.userLogged,
       }
 
     },
-    created () {
-        axios.get('http://localhost:8081/firstpage',
+    methods : {
+      nextSubs() {
+        axios.get('http://localhost:8081/subscriptions', {
+                  headers: {
+                    'content-Type': 'application/json',
+                    "Accept": "/",
+                    "jwtToken": getCookieValue("jwtToken"),
+                    "nextPageToken" : this.nextToken,
+                    "prevPageToken" : this.prevToken,
+                  },
+                },
         ).then(response => {
-          this.results = response.data
           console.log(response)
+          this.results = response.data.Subscriptions
+          this.nextToken = response.data.NextPageToken
+          this.pagination.total = response.data.TotalResults
+          this.pagination.perPage = response.data.ResultPerPage
         })
-      }}
-
+      },
+      prevSubs() {
+        console.log(this.nextToken)
+        console.log(this.prevToken)
+        axios.get('http://localhost:8081/subscriptions', {
+                  headers: {
+                    'content-Type': 'application/json',
+                    "Accept": "/",
+                    "jwtToken": getCookieValue("jwtToken"),
+                    "prevPageToken" : this.prevToken,
+                  },
+                },
+        ).then(response => {
+          console.log(response)
+          this.results = response.data.Subscriptions
+          this.nextToken = response.data.NextPageToken
+          this.pagination.total = response.data.TotalResults
+          this.pagination.perPage = response.data.ResultPerPage
+        })
+      },
+    },
+    mounted () {
+      if ((this.isUserLogged == "false")) {
+        return
+      }
+      axios.get('http://localhost:8081/subscriptions', {
+                headers: {
+                  'content-Type': 'application/json',
+                  "Accept": "/",
+                  "jwtToken": getCookieValue("jwtToken"),
+                },
+              },
+      ).then(response => {
+        console.log(response)
+        this.results = response.data.Subscriptions
+        this.nextToken = response.data.NextPageToken
+        this.pagination.total = response.data.TotalResults
+        this.pagination.perPage = response.data.ResultPerPage
+      })
+    },
+  }
 </script>
 
 <style scoped>
@@ -92,3 +130,13 @@
   /*}*/
 
 </style>
+
+
+
+<!--          <v-pagination-->
+<!--                  circle-->
+<!--                  @click.native="nextSubs()"-->
+<!--                  v-model="pagination.page"-->
+<!--                  :length="(pagination.total / pagination.perPage) >> 0"-->
+<!--                  :total-visible="7"-->
+<!--          />-->

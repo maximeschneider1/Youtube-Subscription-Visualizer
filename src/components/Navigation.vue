@@ -1,16 +1,17 @@
 <template>
     <nav>
-        <v-toolbar app flat>
+        <v-toolbar :elevation=1 dark class="deep-purple accent-4">
             <v-spacer></v-spacer>
-            <v-subheader>V1</v-subheader>
+<!--            <v-btn flat>SIGN IN</v-btn>-->
+            <oauth></oauth>
         </v-toolbar>
-            <v-navigation-drawer app disable-resize-watcher>
+            <v-navigation-drawer clipped app :elevation=1 class="deep-purple accent-4"
+                                 dark
+                                 permanent>
                 <v-list>
-                    <v-subheader>Subheader</v-subheader>
+                    <v-subheader>YOUTUBE <b><i>SUBSEARCH</i></b></v-subheader>
 
-                    <v-list-item
-                            v-for="(item, i) in items" :key="i" :to="item.url"
-                    >
+                    <v-list-item v-for="(item, io) in items" :key="io" :to="item.url">
                         <v-list-item-icon>
                             <v-icon>{{ item.icon }}</v-icon>
                         </v-list-item-icon>
@@ -23,7 +24,8 @@
 
                 <template v-slot:append>
                     <div class="pa-2">
-                        <oauth></oauth>
+<!--                        <oauth></oauth>-->
+                        <v-subheader>VERSION 1</v-subheader>
                     </div>
                 </template>
             </v-navigation-drawer>
@@ -49,7 +51,7 @@
                 { text: 'Subscription', icon: 'mdi-account' , url: '/subscriptions'},
                 { text: 'Random', icon: 'mdi-clock' , url: '/random'},
             ],
-            drawer: true
+            // drawer: true
 
         }),
     }

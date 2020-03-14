@@ -1,8 +1,12 @@
 import Vue from 'vue'
+import Vuex from 'vuex'
 import Router from 'vue-router'
 import Home from './Views/Home'
 
 Vue.use(Router);
+Vue.use(Vuex);
+Vue.config.devtools = true
+
 
 export default new Router({
 
@@ -21,6 +25,11 @@ export default new Router({
             path: '/random',
             name: 'random',
             component: () => import('./Views/Random.vue')
+        },
+        {
+            path: '/default',
+            name: 'default',
+            component: () => import('./components/Default.vue')
         },
         {
             path: '/subscriptions',

@@ -9,18 +9,29 @@
 </template>
 
 <script>
-  // import HelloWorld from './components/HelloWorld';
   import Navigation from "./components/Navigation";
-  // import Oauth from "./components/Oauth";
+
+  function getCookieValue(a) {
+    var b = document.cookie.match('(^|[^;]+)\\s*' + a + '\\s*=\\s*([^;]+)');
+    return b ? b.pop() : '';
+  }
 
   export default {
     name: 'App',
 
     components: {
-      // HelloWorld,
       Navigation,
-      // Oauth,
     },
+    mounted() {
+      var isUserLogged = getCookieValue("userLogged");
+      if ((isUserLogged == "true")) {
+        console.log("User is connected")
+        this.$store.state.userLogged = isUserLogged
+      } else {
+        console.log("you have to connect to continue")
+        return
+      }
+    }
 
   };
 </script>

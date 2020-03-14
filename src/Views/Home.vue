@@ -1,7 +1,12 @@
 <template>
   <v-content>
-    <h1>Salut</h1>
-    <img alt="Vue logo" src="../assets/logo.png">
+    <v-container fill-height fluid>
+      <v-layout wrap justify-center="center" align-center>
+        <v-flex>
+          <p>Welcome to Youtube SubSearch</p>
+        </v-flex>
+      </v-layout>
+    </v-container>
   </v-content>
 
 </template>
@@ -11,6 +16,7 @@
 // import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
+
   name: 'Home',
   components: {
     // HelloWorld
