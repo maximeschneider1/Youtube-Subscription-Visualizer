@@ -1,7 +1,7 @@
 <template>
   <v-content v-if = "isUserLogged=='true'">
     <v-container fluid grid-list-xl>
-      <h1>Your subscription of the day</h1>
+      <v-subheader>Your subscription of the day</v-subheader>
       <v-layout wrap justify-space-around>
         <v-flex >
           <v-card class="mx-auto" max-width="400" v-bind:href="results.URL" target="_blank" >

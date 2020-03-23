@@ -1,9 +1,9 @@
 <template>
   <v-content>
     <v-container fill-height fluid>
-      <v-layout wrap justify-center="center" align-center>
+      <v-layout flex wrap>
         <v-flex>
-          <p>Welcome to Youtube SubSearch</p>
+          <v-subheader class="justify-center">Welcome to Youtube SubSearch</v-subheader>
         </v-flex>
       </v-layout>
     </v-container>

@@ -1,16 +1,22 @@
 <template>
     <nav>
-        <v-toolbar :elevation=1 dark class="deep-purple accent-4">
+        <v-app-bar
+                app
+                clipped-left
+                color="red"
+                :elevation=1 dark class="deep-purple accent-4">
+            <v-toolbar-title>YOUTUBE<b><i>SUBSEARCH    </i></b></v-toolbar-title>
             <v-spacer></v-spacer>
-<!--            <v-btn flat>SIGN IN</v-btn>-->
             <oauth></oauth>
-        </v-toolbar>
-            <v-navigation-drawer clipped app :elevation=1 class="deep-purple accent-4"
+        </v-app-bar>
+            <v-navigation-drawer
+                    v-model="drawer"
+                    app
+                    clipped
+                    :elevation=1 class="deep-purple accent-4"
                                  dark
                                  permanent>
                 <v-list>
-                    <v-subheader>YOUTUBE <b><i>SUBSEARCH</i></b></v-subheader>
-
                     <v-list-item v-for="(item, io) in items" :key="io" :to="item.url">
                         <v-list-item-icon>
                             <v-icon>{{ item.icon }}</v-icon>

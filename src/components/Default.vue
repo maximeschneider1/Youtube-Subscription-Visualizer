@@ -15,11 +15,8 @@
 <script>
     // @ is an alias to /src
     // import HelloWorld from '@/components/HelloWorld.vue'
-
     import Oauth from "./Oauth";
-
     export default {
-
         name: 'Default',
         components: {
             Oauth,
@@ -32,5 +29,4 @@
     /*#subscriptions {*/
     /*  position: absolute;*/
     /*}*/
-
 </style>

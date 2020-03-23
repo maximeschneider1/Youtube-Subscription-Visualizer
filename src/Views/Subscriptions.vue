@@ -1,11 +1,12 @@
 <template>
   <v-content v-if = "isUserLogged=='true'">
     <v-container fluid grid-list-xl dark>
-      <title>List of all your subs </title>
+      <v-subheader>List of all your subs</v-subheader>
       <v-layout wrap justify-space-around>
         <v-flex v-for="(result, idx) in results" :key="idx">
-          <v-card class="mx-auto deep-purple accent-4" dark max-width="400" v-bind:href="result.URL" target="_blank" >
+          <v-card class="mx-auto deep-purple accent-4" width="240px" dark v-bind:href="result.URL" target="_blank" >
             <v-img
+
                     class="white--text align-end"
                     height="200px"
                     v-bind:src="result.Thumbnail"
@@ -16,13 +17,26 @@
         </v-flex>
       </v-layout>
       <v-layout row wrap>
+
         <v-row
                 align="center"
                 justify="space-around"
         >
-          <v-btn @click.native="prevSubs()" rounded color="primary" dark>Previous</v-btn>
-          <v-btn @click.native="nextSubs()" rounded color="primary" dark>Next</v-btn>
+          <div v-if = "prevToken===''">
+            <v-btn @click.native="prevSubs()" rounded class=" deep-purple accent-4 white--text bottom-row" x-large disabled>Previous</v-btn>
+          </div>
+          <div v-else>
+            <v-btn @click.native="prevSubs()" rounded class=" deep-purple accent-4 white--text bottom-row" x-large >Previous</v-btn>
+          </div>
+          <div v-if = "nextToken===''">
+            <v-btn @click.native="nextSubs()" rounded class=" deep-purple accent-4 white--text bottom-row" x-large disabled>Next</v-btn>
+          </div>
+          <div v-else>
+            <v-btn @click.native="nextSubs()" rounded class=" deep-purple accent-4 white--text bottom-row" x-large>Next</v-btn>
+          </div>
         </v-row>
+
+
       </v-layout>
     </v-container>
   </v-content>
@@ -77,6 +91,7 @@
         ).then(response => {
           console.log(response)
           this.results = response.data.Subscriptions
+          this.prevToken = response.data.PrevPageToken
           this.nextToken = response.data.NextPageToken
           this.pagination.total = response.data.TotalResults
           this.pagination.perPage = response.data.ResultPerPage
@@ -96,6 +111,7 @@
         ).then(response => {
           console.log(response)
           this.results = response.data.Subscriptions
+          this.prevToken = response.data.PrevPageToken
           this.nextToken = response.data.NextPageToken
           this.pagination.total = response.data.TotalResults
           this.pagination.perPage = response.data.ResultPerPage
@@ -128,6 +144,10 @@
   /*#subscriptions {*/
   /*  position: absolute;*/
   /*}*/
+
+  .bottom-row {
+    margin-top: 20%;
+  }
 
 </style>
 
