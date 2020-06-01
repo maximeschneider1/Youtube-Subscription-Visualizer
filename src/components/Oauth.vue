@@ -67,6 +67,7 @@
                 .then(response => {
                     // JSON responses are automatically parsed.
                     this.posts = response.data
+                    console.log(response)
                 })
                 .catch(e => {
                     this.errors.push(e)
