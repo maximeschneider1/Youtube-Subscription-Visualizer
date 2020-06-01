@@ -18,16 +18,14 @@
       </v-layout>
       <v-layout row wrap>
 
-        <v-row
-                align="center"
-                justify="space-around"
-        >
+        <v-row align="center" justify="space-around">
           <div v-if = "prevToken===''">
             <v-btn @click.native="prevSubs()" rounded class=" deep-purple accent-4 white--text bottom-row" x-large disabled>Previous</v-btn>
           </div>
           <div v-else>
             <v-btn @click.native="prevSubs()" rounded class=" deep-purple accent-4 white--text bottom-row" x-large >Previous</v-btn>
           </div>
+
           <div v-if = "nextToken===''">
             <v-btn @click.native="nextSubs()" rounded class=" deep-purple accent-4 white--text bottom-row" x-large disabled>Next</v-btn>
           </div>
@@ -131,6 +129,7 @@
               },
       ).then(response => {
         console.log(response)
+         getCookieValue("jwtToken")
         this.results = response.data.Subscriptions
         this.nextToken = response.data.NextPageToken
         this.pagination.total = response.data.TotalResults

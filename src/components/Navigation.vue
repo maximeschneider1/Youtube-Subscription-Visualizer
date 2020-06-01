@@ -26,6 +26,18 @@
                             <v-list-item-title>{{ item.text }}</v-list-item-title>
                         </v-list-item-content>
                     </v-list-item>
+                    <v-list-item>
+                        <v-list-item-icon>
+<!--                            <v-btn v-on:click="addTodo()" dark class="btn btn-primary btn-sm ">-->
+                                <v-icon v-on:click="addTodo()">mdi-plus</v-icon>
+<!--                            </v-btn>-->
+                        </v-list-item-icon>
+
+                        <v-list-item-content>
+                            <input type="text" v-model="todoText" class="no-outline" placeholder="Create a category" />
+                        </v-list-item-content>
+
+                    </v-list-item>
                 </v-list>
 
                 <template v-slot:append>
@@ -52,14 +64,25 @@
 
         data: () => ({
             item: 1,
+            addIcon: 'playlist_add',
             items: [
                 { text: 'Home', icon: 'mdi-flag', url: '/'},
                 { text: 'Subscription', icon: 'mdi-account' , url: '/subscriptions'},
                 { text: 'Random', icon: 'mdi-clock' , url: '/random'},
             ],
             // drawer: true
-
-        }),
+        }
+        ),
+        methods: {
+            addTodo: function() {
+                var newTodo = this.todoText.trim();
+                if (!newTodo) {return;}
+                this.items.push(
+                    {text: newTodo, icon:'mdi-pencil-plus'}
+                );
+                this.todoText = '';
+            }
+    }
     }
 
 
@@ -75,6 +98,9 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+    .no-outline:focus {
+        outline: none;
+    }
     /*#sidebar {*/
     /*    !*position: absolute;*!*/
     /*    height: 100%;*/
