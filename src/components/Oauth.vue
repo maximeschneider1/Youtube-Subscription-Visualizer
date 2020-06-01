@@ -81,17 +81,6 @@
                 deleteCookieValue("jwtToken")
             }
         }
-        // clicked(){
-        //     axios.get(`http://127.0.0.1:8081/GoogleLogin`, )
-        //         .then(response => {
-        //             // JSON responses are automatically parsed.
-        //             this.posts = response.data
-        //         })
-        //         .catch(e => {
-        //             console.log('salut')
-        //             this.errors.push(e)
-        //         })
-        // }
     }
 </script>
 
