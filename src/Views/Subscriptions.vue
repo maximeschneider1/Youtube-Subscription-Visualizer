@@ -77,7 +77,7 @@
     },
     methods : {
       nextSubs() {
-        axios.get('http://localhost:8081/subscriptions', {
+        axios.get('https://salty-eyrie-42146.herokuapp.com/subscriptions', {
                   headers: {
                     'content-Type': 'application/json',
                     "Accept": "/",
@@ -98,7 +98,7 @@
       prevSubs() {
         console.log(this.nextToken)
         console.log(this.prevToken)
-        axios.get('http://localhost:8081/subscriptions', {
+        axios.get('https://salty-eyrie-42146.herokuapp.com/subscriptions', {
                   headers: {
                     'content-Type': 'application/json',
                     "Accept": "/",
@@ -120,7 +120,7 @@
       if ((this.isUserLogged == "false")) {
         return
       }
-      axios.get('http://localhost:8081/subscriptions', {
+      axios.get('https://salty-eyrie-42146.herokuapp.com/subscriptions', {
                 headers: {
                   'content-Type': 'application/json',
                   "Accept": "/",

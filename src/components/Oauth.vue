@@ -63,7 +63,7 @@
         mounted() {
             this.isUserLogged = this.$store.state.userLogged,
             console.log("l'user", this.isUserLogged)
-            axios.get(`http://127.0.0.1:8081/GoogleLogin`, )
+            axios.get(`https://salty-eyrie-42146.herokuapp.com/GoogleLogin`, )
                 .then(response => {
                     // JSON responses are automatically parsed.
                     this.posts = response.data

@@ -42,7 +42,7 @@
         return
       }
 
-      axios.get('http://localhost:8081/random',
+      axios.get('https://salty-eyrie-42146.herokuapp.com/random',
       ).then(response => {
         this.results = response.data
         console.log(response)
