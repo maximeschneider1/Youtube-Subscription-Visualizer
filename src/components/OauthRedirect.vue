@@ -14,7 +14,7 @@ export default {
     },
 
     mounted() {
-        console.log("Bien reçu capitaine", this.token)
+        console.log("Bien reçu capitaine", this.$route.params.token)
         this.$store.state.userLogged = "true"
         this.$store.state.JWToken = this.$route.params.token
     },
