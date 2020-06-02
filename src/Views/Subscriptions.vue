@@ -134,6 +134,7 @@
               },
       ).then(response => {
         console.log(response)
+        console.log("JWT TOKOOKOKOK", this.$store.state.JWToken)
          getCookieValue("jwtToken")
         this.results = response.data.Subscriptions
         this.nextToken = response.data.NextPageToken

@@ -9,14 +9,14 @@ export default {
 
     data() {
         return { 
-            token: this.$route.params.token,
+            
         }
     },
 
     mounted() {
         console.log("Bien reçu capitaine", this.token)
         this.$store.state.userLogged = "true"
-        this.$store.state.JWToken = this.token
+        this.$store.state.JWToken = this.$route.params.token
     },
     
 }
