@@ -1,5 +1,6 @@
 <template>
   <v-content v-if = "isUserLogged=='true'">
+  <OauthRedirect></OauthRedirect>
     <v-container fluid grid-list-xl dark>
       <v-subheader>List of all your subs</v-subheader>
       <v-layout wrap justify-space-around>
@@ -39,6 +40,7 @@
     </v-container>
   </v-content>
   <div v-else>
+    <OauthRedirect/>
     <Default/>
   </div>
 </template>
@@ -46,6 +48,7 @@
 <script>
   import axios from 'axios';
   import Default from "../components/Default";
+  import OauthRedirect from "../components/OauthRedirect"
 
   function getCookieValue(a) {
     var b = document.cookie.match('(^|[^;]+)\\s*' + a + '\\s*=\\s*([^;]+)');
@@ -54,7 +57,10 @@
 
   export default {
     name: 'myNav',
-    components: {Default},
+    components: {
+      Default, 
+      OauthRedirect
+      },
     data() {
 // counties: []
       return {
@@ -123,7 +129,7 @@
                   'content-Type': 'application/json',
                   "Accept": "/",
                   // "jwtToken": getCookieValue("jwtToken"),
-                  "jwtToken": this.$store.state.userLogged,
+                  "jwtToken": this.$store.state.JWToken,
                 },
               },
       ).then(response => {
