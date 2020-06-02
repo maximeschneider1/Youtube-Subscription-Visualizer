@@ -17,6 +17,11 @@ export default new Router({
             component: Home
         },
         {
+            path: '/oauth/:token',
+            name: 'OauthRedirect',
+            component: () => import('./components/OauthRedirect.vue')
+          },
+        {
             path: '/about',
             name: 'about',
             component: () => import('./Views/About.vue')
