@@ -4,7 +4,7 @@
       <v-layout flex wrap>
         <v-flex>
           <v-subheader class="justify-center">Welcome to Youtube SubSearch</v-subheader>
-          <v-subheader class="justify-center">Ce service a été développé en Vue JS et Golang, dans le but d'approcher le framework d'autentification Oauth2</v-subheader>
+          <v-subheader class="justify-center">Developped with VueJS and Golang using OAuth2</v-subheader>
           <v-subheader class="justify-center"></v-subheader>
         </v-flex>
       </v-layout>
