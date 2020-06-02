@@ -1,6 +1,6 @@
 <template>
   <v-content v-if = "isUserLogged=='true'">
-  <OauthRedirect></OauthRedirect>
+  <!-- <OauthRedirect></OauthRedirect> -->
     <v-container fluid grid-list-xl dark>
       <v-subheader>List of all your subs</v-subheader>
       <v-layout wrap justify-space-around>
@@ -40,7 +40,7 @@
     </v-container>
   </v-content>
   <div v-else>
-    <OauthRedirect/>
+    <!-- <OauthRedirect/> -->
     <Default/>
   </div>
 </template>
@@ -48,7 +48,7 @@
 <script>
   import axios from 'axios';
   import Default from "../components/Default";
-  import OauthRedirect from "../components/OauthRedirect"
+  // import OauthRedirect from "../components/OauthRedirect"
 
   function getCookieValue(a) {
     var b = document.cookie.match('(^|[^;]+)\\s*' + a + '\\s*=\\s*([^;]+)');
@@ -59,7 +59,7 @@
     name: 'myNav',
     components: {
       Default, 
-      OauthRedirect
+      // OauthRedirect
       },
     data() {
 // counties: []
