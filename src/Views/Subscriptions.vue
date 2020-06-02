@@ -57,12 +57,9 @@
     components: {Default},
     data() {
 // counties: []
-
       return {
         results: [
-
         ],
-
         pagination: {
           page: 1,
           total: '',
@@ -73,7 +70,6 @@
         prevToken : '',
         isUserLogged: this.$store.state.userLogged,
       }
-
     },
     methods : {
       nextSubs() {
