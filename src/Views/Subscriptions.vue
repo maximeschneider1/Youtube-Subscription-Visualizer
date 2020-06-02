@@ -81,7 +81,8 @@
                   headers: {
                     'content-Type': 'application/json',
                     "Accept": "/",
-                    "jwtToken": getCookieValue("jwtToken"),
+                    // "jwtToken": getCookieValue("jwtToken"),
+                    "jwtToken": this.$store.state.userLogged,
                     "nextPageToken" : this.nextToken,
                     "prevPageToken" : this.prevToken,
                   },
@@ -102,7 +103,8 @@
                   headers: {
                     'content-Type': 'application/json',
                     "Accept": "/",
-                    "jwtToken": getCookieValue("jwtToken"),
+                    // "jwtToken": getCookieValue("jwtToken"),
+                    "jwtToken": this.$store.state.userLogged,
                     "prevPageToken" : this.prevToken,
                   },
                 },
@@ -124,7 +126,8 @@
                 headers: {
                   'content-Type': 'application/json',
                   "Accept": "/",
-                  "jwtToken": getCookieValue("jwtToken"),
+                  // "jwtToken": getCookieValue("jwtToken"),
+                  "jwtToken": this.$store.state.userLogged,
                 },
               },
       ).then(response => {
