@@ -26,18 +26,16 @@
                             <v-list-item-title>{{ item.text }}</v-list-item-title>
                         </v-list-item-content>
                     </v-list-item>
-                    <v-list-item>
+                    <!-- <v-list-item>
                         <v-list-item-icon>
-<!--                            <v-btn v-on:click="addTodo()" dark class="btn btn-primary btn-sm ">-->
                                 <v-icon v-on:click="addTodo()">mdi-plus</v-icon>
-<!--                            </v-btn>-->
                         </v-list-item-icon>
 
                         <v-list-item-content>
                             <input type="text" v-model="todoText" class="no-outline" placeholder="Create a category" />
                         </v-list-item-content>
 
-                    </v-list-item>
+                    </v-list-item> -->
                 </v-list>
 
                 <template v-slot:append>
