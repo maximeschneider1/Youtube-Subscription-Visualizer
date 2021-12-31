@@ -1,7 +1,7 @@
 <template>
     <v-content>
         <v-container fill-height fluid>
-            <v-layout wrap justify-center="center" align-center>
+            <v-layout wrap just y-center="center" align-center>
                 <div>
                     <p>Please connect to use YSS app</p>
                     <Oauth></Oauth>
@@ -9,12 +9,9 @@
             </v-layout>
         </v-container>
     </v-content>
-
 </template>
 
 <script>
-    // @ is an alias to /src
-    // import HelloWorld from '@/components/HelloWorld.vue'
     import Oauth from "./Oauth";
     export default {
         name: 'Default',
@@ -24,9 +21,3 @@
         }
     }
 </script>
-
-<style scoped>
-    /*#subscriptions {*/
-    /*  position: absolute;*/
-    /*}*/
-</style>

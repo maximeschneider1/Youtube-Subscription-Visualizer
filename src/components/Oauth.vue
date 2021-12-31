@@ -1,12 +1,13 @@
 <template>
-    <div v-if = "isUserLogged==='false'">
-        <v-btn rounded block :href="posts">Connect</v-btn>
+
+<div class="text-center" v-if = "isUserLogged==='false'">
+        <v-btn rounded  large color="pink lighten-4" class="white--text" :href="posts">Connect</v-btn>
     </div>
 
     <div v-else>
         <v-menu down :offset-y="offset">
             <template v-slot:activator="{ on }">
-                <v-btn block rounded  v-on="on">
+                <v-btn block color="teal" rounded  v-on="on">
                     <v-icon>
                         {{ icon }}
                     </v-icon>
