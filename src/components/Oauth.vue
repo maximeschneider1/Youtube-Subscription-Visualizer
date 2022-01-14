@@ -48,6 +48,7 @@
     export default {
         name : "Oauth",
         data() {
+            console.log("1111 MON USER", this.$store.state.userLogged)
             return {
                 posts: '',
                 url:'/',
@@ -62,8 +63,9 @@
         },
         // Fetches posts when the component is created.
         mounted() {
+            console.log("22222 MON USER", this.$store.state.userLogged)
             this.isUserLogged = this.$store.state.userLogged,
-            console.log("l'user", this.isUserLogged)
+            console.log("1111 l'user", this.isUserLogged)
             axios.get(`https://salty-eyrie-42146.herokuapp.com/GoogleLogin`, )
                 .then(response => {
                     // JSON responses are automatically parsed.
@@ -76,6 +78,7 @@
 
         },
         updated() {
+            console.log("33333 MON USER", this.$store.state.userLogged)
             this.isUserLogged = this.$store.state.userLogged
         },
         methods : {
