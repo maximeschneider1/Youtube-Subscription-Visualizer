@@ -25,7 +25,7 @@
       permanent
     >
 
-      <v-list v-if="isUserLogged == 'true'">
+      <v-list v-if="isUserLogged === 'true'">
         <v-list-item v-for="(item, io) in items" :key="io" :to="item.url">
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>

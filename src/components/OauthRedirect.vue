@@ -17,7 +17,8 @@ export default {
         console.log("Bien reçu capitaine", this.$route.params.token)
         this.$store.state.userLogged = "true"
         this.$store.state.JWToken = this.$route.params.token
-        window.location.href = 'https://immense-shore-78585.herokuapp.com/#/';
+        // window.location.href = 'https://immense-shore-78585.herokuapp.com/#/';
+        window.location.href = 'http://localhost:8080/#/';
     },
     
 }
