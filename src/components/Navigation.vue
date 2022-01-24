@@ -34,6 +34,7 @@
 
 
       <v-list v-else>
+      <h1>lll</h1>
         <v-list-item v-for="(item, io) in items" :key="io" :to="item.url">
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
@@ -45,7 +46,7 @@
         </v-list-item>
         <v-list-item>
           <v-list-item-icon>
-            <v-icon v-on:click="addTodo()">mdi-plus</v-icon>
+            <v-icon v-on:click="addTodo()">mdi-plus ll</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
