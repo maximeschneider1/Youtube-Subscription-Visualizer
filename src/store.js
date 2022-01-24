@@ -1,7 +1,7 @@
 //Vuex
 import Vue from 'vue'
 import Vuex from 'vuex'
-import createPersistedState from 'vuex-persistedstate'
+import createPersistedState from 'vuex-persistedstate';
 // import Cookies from 'js-cookie'
 
 

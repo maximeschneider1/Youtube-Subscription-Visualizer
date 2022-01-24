@@ -8,13 +8,10 @@
       dark
       class="teal lighten-2"
     >
-      <v-toolbar-title
-        ><b><i>SUBSCROWD</i></b></v-toolbar-title
-      >
+      <v-toolbar-title><b><i>SUBSCROWD </i></b></v-toolbar-title>
       <v-spacer></v-spacer>
-      <!--                        <oauth></oauth>-->
     </v-app-bar>
-    
+
     <v-navigation-drawer
       v-model="drawer"
       app
@@ -24,48 +21,51 @@
       dark
       permanent
     >
+      <div v-if = "this.$store.state.userLogged === 'false'">
+        <v-list>
+          <v-subheader class="justify-center"
+            >Please connect to your Youtube account to launch this</v-subheader
+          >
+          <oauth />
+        </v-list>
+      </div>
 
-          <v-list  v-if = "isUserLogged==='false'">
-        <v-subheader class="justify-center"
-          >Please connect to your Youtube account to launch this</v-subheader
-        >
-        <oauth />
-      </v-list>
+      <div v-if = "this.$store.state.userLogged === 'true'">
+        <v-list>
+          <v-list-item
+            v-for="(item, io) in this.items"
+            :key="io"
+            :to="item.url"
+          >
+            <v-list-item-icon>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-icon>
 
-
-      <v-list v-else>
-      <h1>lll</h1>
-        <v-list-item v-for="(item, io) in items" :key="io" :to="item.url">
-          <v-list-item-icon>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title>{{ item.text }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item>
-          <v-list-item-icon>
-            <v-icon v-on:click="addTodo()">mdi-plus ll</v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <input
-              type="text"
-              v-model="todoText"
-              class="no-outline"
-              placeholder="Create a category"
-            />
-          </v-list-item-content>
-        </v-list-item>
-        <oauth></oauth>
-      </v-list>
-
+            <v-list-item-content>
+              <v-list-item-title>{{ item.text }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          
+          <v-list-item>
+            <v-list-item-icon>
+              <v-icon @click="addTodo()">mdi-plus</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <input
+                type="text"
+                v-model="todoText"
+                class="no-outline"
+                placeholder="Create a category"
+              />
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </div>
 
       <template v-slot:append>
         <div class="pa-2">
           <v-subheader class="justify-center">
-          © 
+            ©
             <a href="http://hello.maximeschneider.fr" id="internal-link"
               >Maxime Schneider, 2021</a
             ></v-subheader
@@ -84,25 +84,37 @@ export default {
   name: "Navigation",
 
   components: {
-    // HelloWorld,
     Oauth,
   },
 
-  data: () => ({
-    item: 1,
-    addIcon: "playlist_add",
-    items: [
-      { text: "Home", icon: "mdi-flag", url: "/" },
-      { text: "Subscription", icon: "mdi-account", url: "/subscriptions" },
-      { text: "Random", icon: "mdi-clock", url: "/random" },
-    ],
-    isUserLogged: this.$store.state.userLogged,
+  data() {
+    return {
+      items: [
+        { text: "Home", icon: "mdi-flag", url: "/" },
+        { text: "Subscription", icon: "mdi-account", url: "/subscriptions" },
+        { text: "Random", icon: "mdi-clock", url: "/random" },
+      ],
+      addIcon: "playlist_add",
+      // isUserLogged: this.$store.state.userLogged,
+    };
+  },
 
-    // drawer: true
-  }),
+  // data: () => ({
+  //   item: 1,
+  //   addIcon: "playlist_add",
+  //   items: [
+  //     { text: "Home", icon: "mdi-flag", url: "/" },
+  //     { text: "Subscription", icon: "mdi-account", url: "/subscriptions" },
+  //     { text: "Random", icon: "mdi-clock", url: "/random" },
+  //   ],
+  //   isUserLogged: this.$store.state.userLogged,
+
+  //   // drawer: true
+  // }),
   methods: {
     addTodo: function () {
       var newTodo = this.todoText.trim();
+      
       if (!newTodo) {
         return;
       }

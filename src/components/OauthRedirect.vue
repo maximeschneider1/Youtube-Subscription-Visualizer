@@ -18,7 +18,7 @@ export default {
         this.$store.state.userLogged = "true"
         this.$store.state.JWToken = this.$route.params.token
         // window.location.href = 'https://immense-shore-78585.herokuapp.com/#/';
-        window.location.href = 'http://localhost:8080/#/';
+        window.location.href = 'http://localhost:8080/#/subscriptions';
     },
     
 }
