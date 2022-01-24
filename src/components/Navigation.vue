@@ -25,7 +25,15 @@
       permanent
     >
 
-      <v-list v-if="isUserLogged === 'true'">
+          <v-list  v-if = "isUserLogged==='false'">
+        <v-subheader class="justify-center"
+          >Please connect to your Youtube account to launch this</v-subheader
+        >
+        <oauth />
+      </v-list>
+
+
+      <v-list v-else>
         <v-list-item v-for="(item, io) in items" :key="io" :to="item.url">
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
@@ -52,12 +60,6 @@
         <oauth></oauth>
       </v-list>
 
-      <v-list v-else>
-        <v-subheader class="justify-center"
-          >Please connect to your Youtube account to launch this</v-subheader
-        >
-        <oauth />
-      </v-list>
 
       <template v-slot:append>
         <div class="pa-2">
